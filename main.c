@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include "dynamic_stack.h"
 
+
 int main() {
+
     StackStatus_t status;
-
-
 
     // Create a stack with a maximum size of 5
     struct Stack_t *myStack = CreateStack(5, &status);
-    if (status != STACK_OK) {
+
+    if(status != STACK_OK) {
         printf("Failed to create stack\n");
         return -1;
     }
@@ -29,7 +30,7 @@ int main() {
 
     // Pop elements from the stack
     for (int i = 0; i < 5; ++i) {
-        int *data = (int *)PopStack(myStack, &status);
+        const int *data = (int *)PopStack(myStack, &status);
         if (status == STACK_OK) {
             printf("Popped data: %d\n", *data);
         } else {
