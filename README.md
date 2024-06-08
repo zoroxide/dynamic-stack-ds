@@ -1,16 +1,23 @@
-//
-// Created by loay on 6/2/2024.
-//
-#include "dynamic_stack.h"
+# dynamic Stacke Data Structure using C
 
-StackStatue_t ret;
-Stack_t *mystack = 0;
-int val = 1;
+### initializing
 
-// go to the header file and remove the DEBUG defenetion (at line 4) to disable debugging...
-int main(void) {
+ - ``` c++
+    #include "dynamic_stack.h"
+    StackStatue_t ret;
+    Stack_t *mystack = 0;
+
+    // go to the header file and remove the DEBUG defenetion (at line 4) to disable debugging...
+    int main(void) {
     mystack = CreateStack(5, &ret);
+    // playgroung
+    DestroyStack(mystack, &ret);
+    return 0;
+   } 
+   ```
+### Playground
 
+ - ``` c++
     /* manually add data */
     int desitred_val_to_push_1 = 3;PushStack(mystack, &desitred_val_to_push_1);
     char desitred_val_to_push_2 = "test";PushStack(mystack, &desitred_val_to_push_2);
@@ -21,7 +28,7 @@ int main(void) {
     for(int i = 0; i<5; i++) {
         PushStack(mystack, &val);
     }
-
+    
     /* remove data using for loop */
     for(int i = 0; i<5; i++) {
         PopStack(mystack, &ret);
@@ -35,9 +42,5 @@ int main(void) {
     /*removing data using while loop*/
     while(!StackIsEmpty(mystack)) {
         PopStack(mystack, &ret);
-    }
-
-    DestroyStack(mystack, &ret);
-    return 0;
-}
-
+    } 
+   ``` 
