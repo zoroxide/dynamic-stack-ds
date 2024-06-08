@@ -8,7 +8,6 @@
 
     int main() {
     StackStatus_t status;
-    int *data;
 
     // Create a stack with a maximum size of 5
     struct Stack_t *myStack = CreateStack(5, &status);
