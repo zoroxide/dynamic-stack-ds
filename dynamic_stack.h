@@ -189,9 +189,9 @@ void* PopStack(struct Stack_t *stack_obj, StackStatus_t *ret_status) {
     stack_obj->ElementCount--;
     *ret_status = STACK_OK;
 
-#ifdef DEBUG
-    printf("[ OK ] : Data: (%i) is POPPED\n", *(int*)poppedData);
-#endif
+    #ifdef DEBUG
+        printf("[ OK ] : Data: (%i) is POPPED\n", *(int*)poppedData);
+    #endif
 
     return poppedData;
 }

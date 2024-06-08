@@ -15,13 +15,9 @@ int main() {
     }
 
     // Push elements onto the stack
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 1; i <= 5; ++i) {
         int data = i;
-        status = PushStack(myStack, &data);
-        if (status != STACK_OK) {
-            printf("Failed to push data onto stack\n");
-            return -1;
-        }
+        PushStack(myStack, &data);
     }
 
     if (status == STACK_FULL) {
@@ -30,12 +26,7 @@ int main() {
 
     // Pop elements from the stack
     for (int i = 0; i < 5; ++i) {
-        const int *data = (int *)PopStack(myStack, &status);
-        if (status == STACK_OK) {
-            printf("Popped data: %d\n", *data);
-        } else {
-            printf("Failed to pop data from stack\n");
-        }
+        PopStack(myStack, &status);
     }
 
     // Check if the stack is empty
