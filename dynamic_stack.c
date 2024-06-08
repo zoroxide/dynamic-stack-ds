@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static int StackIsEmpty(const Stack_t* stack_obj){
+static int StackIsEmpty(const Stack_t *stack_obj){
     return (stack_obj->ElementCount == 0);
 
 }
-static int StackIsFull(const Stack_t* stack_obj) {
+static int StackIsFull(const Stack_t *stack_obj) {
     return (stack_obj->StackMaxsize == stack_obj->ElementCount);
 }
 
-Stack_t* CreateStack(const int maxsize, StackStatue_t *ret_status){
+Stack_t *CreateStack(const int maxsize, StackStatue_t *ret_status){
     Stack_t *myStack = NULL;
     if(ret_status == NULL) {
         #ifdef DEBUG
@@ -25,7 +25,7 @@ Stack_t* CreateStack(const int maxsize, StackStatue_t *ret_status){
         #endif
         if(!myStack) {
             #ifdef DEBUG
-                        printf("[ ERROR ] : STACK ALLOCATION FIELD\n");
+                printf("[ ERROR ] : STACK ALLOCATION FIELD\n");
             #endif
             *ret_status = STACK_NOK;
             myStack = NULL;
@@ -44,7 +44,7 @@ Stack_t* CreateStack(const int maxsize, StackStatue_t *ret_status){
     }
     return myStack;
 }
-Stack_t* DestroyStack(Stack_t* stack_obj, StackStatue_t *ret_status){
+Stack_t *DestroyStack(Stack_t *stack_obj, StackStatue_t *ret_status){
     if(ret_status == NULL && stack_obj == NULL) {
         #ifdef DEBUG
                 printf("[ ERROR ] : NULL POINTER DETECTED\n");
@@ -60,7 +60,7 @@ Stack_t* DestroyStack(Stack_t* stack_obj, StackStatue_t *ret_status){
     }
     return NULL;
 }
-StackStatue_t PushStack(Stack_t* stack_obj, void* itemPtr){
+StackStatue_t PushStack(Stack_t *stack_obj, void *itemPtr){
     StackStatue_t ret_status = STACK_NOK;
     if(stack_obj == NULL && itemPtr==NULL) {
         #ifdef DEBUG
@@ -113,18 +113,18 @@ void* PopStack(Stack_t *stack_obj, StackStatue_t *ret_status){
     return popedData;
 }
 
-void* StackTop(const Stack_t* stack_obj, StackStatue_t* ret_status){
+void *StackTop(const Stack_t *stack_obj, StackStatue_t *ret_status){
     void *popedData = NULL;
     if(ret_status == NULL && stack_obj == NULL) {
-#ifdef DEBUG
-        printf("[ ERROR ] : NULL POINTER DETECTED\n");
-#endif
+        #ifdef DEBUG
+                printf("[ ERROR ] : NULL POINTER DETECTED\n");
+        #endif
         *ret_status = STACK_NULL_POINTER;
     } else {
         if(StackIsEmpty(stack_obj)) {
-#ifdef DEBUG
-            printf("[ ERROR ] : STACK IS EMPTY\n");
-#endif
+            #ifdef DEBUG
+                        printf("[ ERROR ] : STACK IS EMPTY\n");
+            #endif
             *ret_status = STACK_EMPTY;
             popedData = NULL;
         }
@@ -134,7 +134,7 @@ void* StackTop(const Stack_t* stack_obj, StackStatue_t* ret_status){
     return popedData;
 }
 
-StackStatue_t StackCount(const Stack_t* stack_obj, int *stack_count){
+StackStatue_t StackCount(const Stack_t *stack_obj, int *stack_count){
     StackStatue_t ret_status = STACK_NOK;
     if(stack_obj == NULL && stack_count) {
         #ifdef DEBUG
