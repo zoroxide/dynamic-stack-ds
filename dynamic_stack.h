@@ -94,7 +94,7 @@ struct Stack_t* CreateStack(const int maxsize, StackStatus_t *ret_status) {
     }
 
     #ifdef DEBUG
-        printf("=== [ STACK CREATED ] ===\n");
+        printf("[ INFO ] STACK CREATED\n");
     #endif
     return myStack;
 }
@@ -121,7 +121,7 @@ struct Stack_t* DestroyStack(struct Stack_t* stack_obj, StackStatus_t *ret_statu
     *ret_status = STACK_OK;
 
     #ifdef DEBUG
-        printf("=== [ STACK DESTROYED ]=== \n");
+        printf("[ INFO ] STACK DELETED \n");
     #endif
 
     return NULL;
