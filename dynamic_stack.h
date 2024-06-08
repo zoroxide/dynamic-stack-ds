@@ -46,14 +46,14 @@ typedef enum {
  * @param: (stack_obj) an adress of the desired stack
  * @retval: "0" if the stack is not empty, "1" if it is empty
  */
-static int StackIsEmpty(const Stack_t* stack_obj);
+int StackIsEmpty(const Stack_t* stack_obj);
 
 /*
  * @brief: checks if the stack is Full
  * @param: (stack_obj) an adress of the desired stack
  * @retval: "0" if the stack is not Full, "1" if it is Full
  */
-static int StackIsFull(const Stack_t* stack_obj);
+int StackIsFull(const Stack_t* stack_obj);
 
 
 //Core Functions

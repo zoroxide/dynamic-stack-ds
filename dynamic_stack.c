@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static int StackIsEmpty(const Stack_t *stack_obj){
+int StackIsEmpty(const Stack_t *stack_obj){
     return (stack_obj->ElementCount == 0);
 
 }
-static int StackIsFull(const Stack_t *stack_obj) {
+int StackIsFull(const Stack_t *stack_obj) {
     return (stack_obj->StackMaxsize == stack_obj->ElementCount);
 }
 
@@ -21,7 +21,7 @@ Stack_t *CreateStack(const int maxsize, StackStatue_t *ret_status){
     }else {
         myStack = (Stack_t *) malloc(sizeof(Stack_t));
         #ifdef DEBUG
-                printf("[ OK ] : STACK ALLOCATED\n");
+                printf("=== [ STACK CREATED ] ===\n");
         #endif
         if(!myStack) {
             #ifdef DEBUG
@@ -55,7 +55,7 @@ Stack_t *DestroyStack(Stack_t *stack_obj, StackStatue_t *ret_status){
         free(stack_obj);
         *ret_status = STACK_OK;
         #ifdef DEBUG
-                printf("[ OK ] : STACK DESTROYED\n");
+                printf("=== [ STACK DESTROYED ]=== \n");
         #endif
     }
     return NULL;
