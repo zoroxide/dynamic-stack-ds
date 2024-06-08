@@ -3,44 +3,77 @@
 ### initializing
 
  - ``` c++
+    #include <stdio.h>
     #include "dynamic_stack.h"
-    StackStatue_t ret;
-    Stack_t *mystack = 0;
 
-    // go to the header file and remove the DEBUG defenetion (at line 4) to disable debugging...
-    int main(void) {
-    mystack = CreateStack(5, &ret);
-    // playgroung
-    DestroyStack(mystack, &ret);
+    int main() {
+    StackStatus_t status;
+    int *data;
+
+    // Create a stack with a maximum size of 5
+    struct Stack_t *myStack = CreateStack(5, &status);
+    if (status != STACK_OK) {
+        printf("Failed to create stack\n");
+        return -1;
+    }
+   
     return 0;
-   } 
+   }
    ```
 ### Playground
 
  - ``` c++
-    /* manually add data */
-    int desitred_val_to_push_1 = 3;PushStack(mystack, &desitred_val_to_push_1);
-    char desitred_val_to_push_2 = "test";PushStack(mystack, &desitred_val_to_push_2);
-    double desitred_val_to_push_3 = 3.14;PushStack(mystack, &desitred_val_to_push_3);
-    long long desitred_val_to_push_4 = 88;PushStack(mystack, &desitred_val_to_push_4);
+    StackStatus_t status;
+    int *data;
 
-    /* add data using for loop*/
-    for(int i = 0; i<5; i++) {
-        PushStack(mystack, &val);
-    }
-    
-    /* remove data using for loop */
-    for(int i = 0; i<5; i++) {
-        PopStack(mystack, &ret);
+
+    // Create a stack with a maximum size of 5
+    struct Stack_t *myStack = CreateStack(5, &status);
+    if (status != STACK_OK) {
+        printf("Failed to create stack\n");
+        return -1;
     }
 
-    /* adding data using while loop */
-    while(!StackIsFull(mystack)) {
-        PushStack(mystack, &val);
+    // Push elements onto the stack
+    for (int i = 0; i < 5; ++i) {
+        data = (int *)malloc(sizeof(int));
+        *data = i;
+        status = PushStack(myStack, data);
+        if (status != STACK_OK) {
+            printf("Failed to push data onto stack\n");
+            return -1;
+        }
     }
 
-    /*removing data using while loop*/
-    while(!StackIsEmpty(mystack)) {
-        PopStack(mystack, &ret);
+    // Try pushing one more element to check for stack overflow
+    data = (int *)malloc(sizeof(int));
+    *data = 5;
+    status = PushStack(myStack, data);
+    if (status == STACK_FULL) {
+        printf("Stack is full\n");
+    }
+
+    // Pop elements from the stack
+    for (int i = 0; i < 5; ++i) {
+        data = (int *)PopStack(myStack, &status);
+        if (status == STACK_OK) {
+            printf("Popped data: %d\n", *data);
+            free(data); // Free the memory allocated for the popped element
+        } else {
+            printf("Failed to pop data from stack\n");
+        }
+    }
+
+    // Check if the stack is empty
+    if (StackIsEmpty(myStack)) {
+        printf("Stack is empty\n");
+    }
+
+    // Destroy the stack
+    DestroyStack(myStack, &status);
+
+    if (status != STACK_OK) {
+        printf("Failed to destroy stack\n");
+        return -1;
     } 
    ``` 
